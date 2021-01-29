@@ -1,0 +1,6 @@
+services:
+  encryptdecrypt.mcrypt:
+    class: Drupal\encryptdecrypt\Backend\McryptBackend;
+
+  encryptdecrypt.openssl:
+    class: Drupal\encryptdecrypt\Backend\OpenSSLBackend;

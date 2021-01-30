@@ -77,7 +77,7 @@ class EncryptDecryptForm extends FormBase {
 
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Encrypt'),
+      '#value' => $this->t('Encrypt/Decrypt'),
     ];
 
     return $form;

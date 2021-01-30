@@ -5,10 +5,20 @@ namespace Drupal\encryptdecrypt\Backend;
  */
 interface BackendInterface {
 
-  // To encypt
+  /**
+   * To encrypt the string.
+   *
+   * @param $text
+   * @return string
+   */
   public function encrypt($text);
 
-  // To decrypt
+  /**
+   * To decrypt the string.
+   *
+   * @param $text
+   * @return string
+   */
   public function decrypt($text);
 
 }

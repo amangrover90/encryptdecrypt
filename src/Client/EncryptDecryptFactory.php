@@ -2,13 +2,18 @@
 
 namespace Drupal\encryptdecrypt\Client;
 
-use Drupal\encryptdecrypt\Backend\McryptBackend;
-use Drupal\encryptdecrypt\Backend\OpenSSLBackend;
-
+/**
+ * Class EncryptDecryptFactory
+ * @package Drupal\encryptdecrypt\Client
+ */
 class EncryptDecryptFactory {
 
-  public function getClient($name = 'openssl') {
-    return $name == 'openssl' ? new CallClient (new OpenSSLBackend()) : new CallClient (new McryptBackend());
+  /**
+   * @param string $lib_name
+   * @return CallClient
+   */
+  public function getClient($lib_name = 'openssl') {
+    return $lib_name == 'mcrypt' ? new CallClient (\Drupal::service('encryptdecrypt.mcrypt')) : new CallClient (\Drupal::service('encryptdecrypt.openssl'));
   }
 
 }

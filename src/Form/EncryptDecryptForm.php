@@ -7,9 +7,12 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\encryptdecrypt\Client\EncryptDecryptFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Twig\Error\RuntimeError;
 
 
+/**
+ * Class EncryptDecryptForm
+ * @package Drupal\encryptdecrypt\Form
+ */
 class EncryptDecryptForm extends FormBase {
 
   /**
@@ -85,7 +88,13 @@ class EncryptDecryptForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-var_dump(extension_loaded('openssl')); exit;
+
+    if (!extension_loaded($form_state->getValue('encryption_library'))) {
+      $this->messenger->addError($this->t("Install %lib php extension.", [
+        '%lib' => $form_state->getValue('encryption_library'),
+      ]));
+    }
+
     if (empty($form_state->getValue(ed_string))) {
       $form_state->setErrorByName('ed_string', $this->t("Enter valid string"));
     }

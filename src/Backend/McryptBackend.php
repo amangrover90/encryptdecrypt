@@ -4,9 +4,20 @@ namespace Drupal\encryptdecrypt\Backend;
 
 use Drupal\encryptdecrypt\Backend\BackendInterface;
 
+/**
+ * Class McryptBackend
+ * @package Drupal\encryptdecrypt\Backend
+ */
 class McryptBackend implements BackendInterface {
 
+  /**
+   * @var string
+   */
   private $key;
+
+  /**
+   * @var false|string
+   */
   private $iv;
 
   /**
@@ -18,16 +29,18 @@ class McryptBackend implements BackendInterface {
     $this->iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_URANDOM);
   }
 
-
+  /**
+   * @inheritDoc
+   */
   public function encrypt($text) {
-    // TODO: Implement encrypt() method.
     $cipher_text = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $this->key, $text, MCRYPT_MODE_CBC, $this->iv);
     return base64_encode($cipher_text);
   }
 
-  public function decrypt($text)
-  {
-    // TODO: Implement decrypt() method.
+  /**
+   * @inheritDoc
+   */
+  public function decrypt($text){
     $text_decode = base64_decode($text);
     return mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $this->key, $text_decode, MCRYPT_MODE_CBC, $this->iv);
   }

@@ -1,9 +1,0 @@
-services:
-  encryptdecrypt.mcrypt:
-    class: Drupal\encryptdecrypt\Backend\McryptBackend
-
-  encryptdecrypt.openssl:
-    class: Drupal\encryptdecrypt\Backend\OpenSSLBackend
-
-  encryptdecrypt.factory:
-    class: Drupal\encryptdecrypt\Client\EncryptDecryptFactory

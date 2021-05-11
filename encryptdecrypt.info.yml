@@ -2,4 +2,4 @@ name: Encrypt Decrypt
 type: module
 description: 'Allows to encrypt and decrypt the string.'
 package: Custom
-core_version_requirement: ^8.x || ^9.x
+core_version_requirement: ^8.8 || ^9
